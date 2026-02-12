@@ -274,12 +274,20 @@ h1 .buttons {
     top: -18px;
     left: 0;
     border-radius: 0;
-    width: calc(100vw - 30px);
+    width: calc(100vw - 30px) !important;
     padding: 0 !important;
+    border: 0 !important;
+    align-items: flex-start !important;
 
     input {
       width: 100% !important;
+      position: relative !important;
+      border-radius: 0 !important;
+      max-height: unset !important;
+      border: 1px solid black !important;
+      margin-bottom: 0 !important;
     }
+
   }
   .tabs .tab.filter.active {
     border: 1px solid black;
@@ -291,4 +299,6 @@ h1 .buttons {
   left: 5px;
     bottom: unset;
   }
+
+
 }
