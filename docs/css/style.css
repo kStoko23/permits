@@ -1,0 +1,157 @@
+html {
+  font-size: 2em; }
+
+input, select, textarea {
+  font-size: 1em; }
+
+.tabs-wrapper {
+  display: flex;
+  flex-direction: column; }
+  .tabs-wrapper > .tabs {
+    margin-left: 20px;
+    display: flex;
+    gap: 20px; }
+    .tabs-wrapper > .tabs > div {
+      border: 1px solid black;
+      padding: 5px 20px 0;
+      border-radius: 10px 10px 0 0;
+      z-index: 2;
+      cursor: pointer; }
+    .tabs-wrapper > .tabs > div.active {
+      border: 2px solid black;
+      border-bottom: 2px solid white;
+      background: white; }
+    .tabs-wrapper > .tabs > div.filter {
+      padding: 0 5px 3px;
+      display: flex;
+      align-items: flex-end; }
+      .tabs-wrapper > .tabs > div.filter input {
+        border: 0;
+        width: 8em;
+        font-size: 1em; }
+  .tabs-wrapper > .content {
+    border-top: 2px solid black;
+    margin-top: -2px; }
+
+button {
+  cursor: pointer;
+  font-size: .5em; }
+
+.entry-actions {
+  display: flex;
+  gap: 20px; }
+
+.entry-actions button {
+  font-size: 1em; }
+
+.github-wrapper {
+  position: absolute;
+  top: 5px;
+  right: 70px;
+  z-index: 10; }
+  .github-wrapper img {
+    height: 1.2em;
+    width: 1.2em; }
+
+.help-wrapper {
+  z-index: 10;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  color: blue;
+  cursor: pointer;
+  border: 1px solid blue;
+  border-radius: 50%;
+  width: 1em;
+  height: 1em; }
+
+.help {
+  position: absolute;
+  top: 1px;
+  left: 0;
+  width: 1em;
+  height: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+#helptext {
+  width: 50vw;
+  min-width: 40em; }
+
+#addform {
+  width: 50vw;
+  min-width: 40em; }
+
+form .row {
+  margin: 10px 0 30px 0; }
+  form .row label {
+    margin-right: 10px; }
+
+#addeditformwrapper {
+  padding: 30px;
+  border-radius: 10px; }
+
+.buttons-row {
+  margin-top: 20px;
+  border-top: 1px solid #333;
+  padding-top: 20px;
+  display: flex;
+  gap: 20px;
+  align-content: center;
+  justify-content: flex-end; }
+  .buttons-row button {
+    font-size: 1em; }
+
+#permits-list {
+  display: flex;
+  flex-direction: column; }
+
+#permits-list > div {
+  display: flex;
+  gap: 20px;
+  padding: 10px 20px; }
+  #permits-list > div > div {
+    width: 10em; }
+
+h1 {
+  margin-top: 10px;
+  position: relative; }
+
+.entry-numberplate {
+  color: blue;
+  cursor: pointer;
+  text-decoration: underline; }
+
+.hidden {
+  display: none !important; }
+
+.copy {
+  position: relative; }
+
+.copiedHighlight {
+  position: absolute;
+  font-size: 0.8rem;
+  top: 0;
+  right: 0;
+  background: rgba(255, 244, 85, 0.5);
+  border: 2px solid #a8a348;
+  text-decoration: none;
+  color: #666;
+  padding: 2px 15px;
+  border-radius: 10px;
+  /* Initial visibility */
+  opacity: 1;
+  /* Transition opacity over 0.5 seconds with an ease timing function */
+  transition: opacity 0.5s ease; }
+
+h1 .copiedHighlight {
+  bottom: -30px;
+  left: 0;
+  right: unset;
+  top: unset; }
+
+.f-button.is-arrow {
+  display: none !important; }
+
+/*# sourceMappingURL=style.css.map */
