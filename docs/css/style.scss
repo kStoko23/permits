@@ -1,10 +1,3 @@
-html {
-  font-size: 2em;
-}
-
-input, select, textarea {
-  font-size: 1em;
-}
 
 .tabs-wrapper {
   display: flex;
@@ -67,8 +60,8 @@ button {
 
 .github-wrapper {
   position: absolute;
-  top: 5px;
-  right: 70px;
+  top: 10px;
+  right: 50px;
   z-index: 10;
 
   img {
@@ -78,11 +71,30 @@ button {
 
   }
 }
+.qr-wrapper  {
+   z-index: 10;
+  position: absolute;
+  top: 11px;
+  right: 82px;
+  cursor: pointer;
+  width: 1.2em;
+  height: 1.2em;
+  img {
+    width: 1.2em;
+  height: 1.2em;
+  }
+}
+
+#qrcode img {
+  max-width: 60vw;
+  max-height: 60vh;
+}
+
 
 .help-wrapper {
   z-index: 10;
   position: absolute;
-  top: 10px;
+  top: 11px;
   right: 20px;
   color: blue;
   cursor: pointer;
@@ -215,3 +227,6 @@ h1 {
 .f-button.is-arrow {
   display: none !important;
 }
+
+
+
