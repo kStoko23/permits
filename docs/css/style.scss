@@ -2,6 +2,7 @@
 .tabs-wrapper {
   display: flex;
   flex-direction: column;
+  position: relative;
 
   > .tabs {
     margin-left: 20px;
@@ -233,5 +234,25 @@ h1 {
   display: none !important;
 }
 
-
-
+@media (max-width: 1024px) {
+  h1 {
+    margin-top: 30px;
+  }
+  .tabs {
+    margin-top: 15px;
+  }
+  .tabs .tab.filter {
+    position: absolute;
+    top:-18px;
+    left:0;
+    border-radius: 0;
+    width: calc(100vw - 30px);
+    padding:0 !important;
+    input {
+      width: 100% !important;
+    }
+  }
+  .tabs .tab.filter.active {
+    border: 1px solid black;
+  }
+}
