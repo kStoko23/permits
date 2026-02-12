@@ -45,7 +45,8 @@ tabs.addEventListener("click", function (e) {
     }
 });
 
-function saveNumberplate(name, numberplate, usage) {
+function saveNumberplate(name, numberplate, usage, id) {
+    console.log("SAVE", name, numberplate, usage, id);
     let currData = JSON.parse(window.localStorage.getItem("permitsData"));
     if (typeof currData === "undefined" || !currData) {
         currData = [];
@@ -53,15 +54,28 @@ function saveNumberplate(name, numberplate, usage) {
     let newData = [];
     let found = false;
     for (let existing of currData) {
-        if (existing.numberplate === numberplate) {
+        if ((typeof existing.id === "undefined" && existing.numberplate === numberplate) || (typeof existing.id !== "undefined" && existing.id===id)) {
             found = true;
             existing.name = name;
+            existing.numberplate = numberplate;
             existing.usage = usage;
+            if (typeof existing.id === "undefined") {
+                existing.id=generateRandomString(10);
+            }
         }
+        else if (typeof existing.id !== "undefined" && existing.id!==id && existing.name===name) {
+            alert("You already have an entry with the name "+name);
+            return false;
+        }
+        else if (typeof existing.id !== "undefined" && existing.id!==id && existing.numberplate===numberplate) {
+            alert("You already have an entry with numberplate "+numberplate);
+            return false;
+        }
+
         newData.push(existing);
     }
     if (!found) {
-        newData.push({numberplate: numberplate, name: name, usage: usage});
+        newData.push({numberplate: numberplate, name: name, usage: usage, id: id});
     }
     window.localStorage.setItem("permitsData", JSON.stringify(newData));
     let message;
@@ -91,7 +105,7 @@ function saveNumberplate(name, numberplate, usage) {
         }, {once: true}); // { once: true } auto-removes the listener after it runs
 
     }, 2000);
-
+    return true;
 }
 
 function getUsage() {
@@ -111,6 +125,7 @@ function getNumberplates() {
         let div = document.createElement("div");
         div.classList.add("usage-" + entry.usage);
         div.classList.add("entry");
+        div.dataset.id=typeof entry.id === "undefined"?"":entry.id;
         if (getUsage() && getUsage() !== entry.usage) {
             div.classList.add("hidden");
         }
@@ -159,9 +174,12 @@ document.getElementById("addeditform").addEventListener("submit", function () {
         alert(error);
     }
     else {
-        saveNumberplate(document.getElementById("addEditName").value, document.getElementById("addEditNumberPlate").value, document.getElementById("addEditUsage").value);
-        document.getElementById('addeditform').reset();
-        getNumberplates();
+        let id=document.getElementById("addEditId").value
+        if (!id) id=generateRandomString(10);
+        if (saveNumberplate(document.getElementById("addEditName").value, document.getElementById("addEditNumberPlate").value, document.getElementById("addEditUsage").value, id)) {
+            document.getElementById('addeditform').reset();
+            getNumberplates();
+        }
     }
 });
 
@@ -236,6 +254,7 @@ document.addEventListener("click", function (e) {
 
         }, 1000);
     } else if (e.target.classList.contains("edit-entry")) {
+        document.getElementById("addEditId").value = e.target.closest(".entry").dataset.id;
         document.getElementById("addEditName").value = e.target.closest(".entry").querySelector(".entry-name").innerText;
         document.getElementById("addEditNumberPlate").value = e.target.closest(".entry").querySelector(".entry-numberplate").innerText;
         let usage;
@@ -289,6 +308,7 @@ document.addEventListener("click", function (e) {
         if (document.getElementById("addEditIsNew").value === "noTemp") {
             document.getElementById("addEditIsNew").value = "no";
         } else {
+            document.getElementById("addEditId").value = "";
             document.getElementById("addEditName").value = "";
             document.getElementById("addEditName").focus();
             document.getElementById("addEditNumberPlate").value = "";
